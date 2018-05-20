@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="fasop_project">
+	<property environment="env" />
+	<property name="junit.output.dir" value="junit" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.6" />
+	<property name="source" value="1.6" />
+
+	<path id="fasop_framework.classpath">
+		<pathelement location="bin" />
+		<pathelement location="lib/groovy-all-1.7.3.jar" />
+		<pathelement location="lib/junit-3.8.2.jar" />
+		<pathelement location="lib/mysql-connector-java-5.1.10-bin.jar" />
+		<pathelement location="lib/javax.persistence_2.0.3.v201010191057.jar" />
+		<pathelement location="lib/eclipselink.jar" />
+		<pathelement location="lib/xstream-1.3.1.jar" />
+		<pathelement location="lib/xstream-1.3.1.jar" />
+		<pathelement location="lib/commons-cli-1.2.jar" />
+		<pathelement location="lib/commons-collections-3.2.1.jar" />
+		<pathelement location="lib/commons-email-1.2-javadoc.jar" />
+		<pathelement location="lib/commons-email-1.2-sources.jar" />
+		<pathelement location="lib/commons-email-1.2.jar" />
+		<pathelement location="lib/commons-logging-1.1.1.jar" />
+		<pathelement location="lib/commons-lang3-3.1.jar" />
+		<pathelement location="lib/commons-math3-3.2.jar" />
+		<pathelement location="lib/mailapi.jar" />
+		<pathelement location="lib/dsn.jar" />
+		<pathelement location="lib/imap.jar" />
+		<pathelement location="lib/smtp.jar" />
+		<pathelement location="lib/pop3.jar" />
+		<pathelement location="lib/c3p0-0.9.2.1.jar" />
+		<pathelement location="lib/TarsosDSP-2.0.jar" />
+		<pathelement location="lib/sphinx4-core-1.0-SNAPSHOT.jar" />
+		<pathelement location="lib/weka.jar" />
+	</path>
+	
+	<taskdef name="groovy" classname="org.codehaus.groovy.ant.Groovy" classpathref="fasop_framework.classpath"/>
+	
+	<target name="export" depends="build">
+		<echo message="${ant.project.name}: ${ant.file}" />
+		<copy includeemptydirs="false" todir="../gert_content_web/src/java" overwrite="true">
+			<fileset dir="src">
+				<!--exclude name="**/META-INF/**" /-->
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="export_asr_res" depends="export_asr_grammars, export_asr_dictionaries">
+		<echo message="${ant.project.name}: ${ant.file}" />
+	</target>
+	
+	<target name="export_asr_grammars" depends="build">
+			<echo message="${ant.project.name}: ${ant.file}" />
+			<copy includeemptydirs="false" todir="../gert_content_web/speech_recognizer/grammars" overwrite="true">
+				<fileset dir="scripts/asr_scripts/grammars">
+					<!--exclude name="**/META-INF/**" /-->
+				</fileset>
+			</copy>
+		</target>
+	
+	<target name="export_asr_dictionaries" depends="build">
+			<echo message="${ant.project.name}: ${ant.file}" />
+			<copy includeemptydirs="false" todir="../gert_content_web/speech_recognizer/dictionaries" overwrite="true">
+				<fileset dir="scripts/asr_scripts/grammars">
+					<!--exclude name="**/META-INF/**" /-->
+				</fileset>
+			</copy>
+		</target>
+	
+	<target name="build" depends="init">
+		<echo message="${ant.project.name}: ${ant.file}" />
+		<javac destdir="bin" srcdir="src" includeJavaRuntime="true" fork="true" includeantruntime="true" classpathref="fasop_framework.classpath"/>
+	</target>
+	
+	<target name="init">
+			<mkdir dir="bin" />
+			<copy includeemptydirs="false" todir="bin">
+				<fileset dir="src">
+				</fileset>
+			</copy>
+		</target>
+	
+	<target name="clean">
+		<delete dir="bin" />
+	</target>
+	
+	<target name="sendEmails">
+		<groovy src="scripts/send_emails_to_subjects.groovy" fork="true" classpathref="fasop_framework.classpath">
+			<arg line="${user.dir}/scripts/emails/email_body_nov2012_signup_invite.txt"/>
+		</groovy>
+	</target>
+	
+	<target name="sendReports">
+			<groovy src="scripts/send_report_emails.groovy" fork="true" classpathref="fasop_framework.classpath">
+				<arg line="${user.dir}/scripts/emails/email_score_notification.txt"/>
+			</groovy>
+		</target>
+	
+</project>

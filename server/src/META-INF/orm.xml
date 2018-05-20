@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="1.0" xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+	 http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	 
+	<entity class="ru.fasop.QuestionnaireItem" name="QuestionnaireItem" metadata-complete="false" access="FIELD"/>
+	<entity class="ru.fasop.TestSubject" name="TestSubject" metadata-complete="false" access="FIELD"/>
+	<entity class="ru.fasop.TestSpot" name="TestSpot" metadata-complete="false" access="FIELD"/>
+	<entity class="ru.fasop.TimeSlot" name="TimeSlot" metadata-complete="false" access="FIELD"/>
+	<entity class="ru.fasop.TestDay" name="TestDay" metadata-complete="false" access="FIELD"/>
+	<entity class="ru.fasop.TestPeriod" name="TestPeriod" metadata-complete="false" access="FIELD"/>
+	<entity class="ru.fasop.log.LogEvent" name="LogEvent" metadata-complete="false" access="FIELD"/>
+	<entity class="ru.fasop.log.LogEventParam" name="LogEventParam" metadata-complete="false" access="FIELD"/>
+	<entity class="ru.fasop.log.Session" name="Session" metadata-complete="false" access="FIELD"/>
+	<entity class="ru.fasop.GertString" name="GertString" metadata-complete="false" access="FIELD"/>
+	
+	<entity class="ru.fasop.OwnerRecord" name="OwnerRecord" metadata-complete="false" access="FIELD"/>
+	
+	<entity class="ru.fasop.FASOPUserGroup" name="FASOPUserGroup" metadata-complete="false" access="FIELD"/>
+	<entity class="ru.fasop.FASOPUserTask" name="FASOPUserTask" metadata-complete="false" access="FIELD"/>
+	<entity class="ru.fasop.FASOPUserTaskList" name="FASOPUserTaskList" metadata-complete="false" access="FIELD"/>
+	
+	<entity class="ru.fasop.motivation.L2SelfConceptInstance" name="L2SelfConceptInstance" metadata-complete="false" access="FIELD"/>
+	<entity class="ru.fasop.motivation.L2PossibleSelf" name="L2PossibleSelf" metadata-complete="false" access="FIELD"/>
+	<entity class="ru.fasop.motivation.L2SelfConstruct" name="L2SelfConstruct" metadata-complete="false" access="FIELD"/>
+	<entity class="ru.fasop.motivation.LanguageAndCulturePair" name="LanguageAndCulturePair" metadata-complete="false" access="FIELD"/>
+	<entity class="ru.fasop.GertKeyValuePair" name="GertKeyValuePair" metadata-complete="false" access="FIELD"/>
+	
+</entity-mappings>
+
